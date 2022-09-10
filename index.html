@@ -2,7 +2,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeneT Order</title>
+    <title>Outsourcing</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
@@ -12,54 +12,32 @@
 </head>
 <body>
     <form class="w-75 mx-auto">
-        <p class="mt-3">色(長袖)<span style="margin-right: 5em;"></span><a class="link" href="https://prod-toms-web.s3.amazonaws.com/assets/product/00102/pdf/color_chart/00102-CVL.pdf" target="_blank" rel="noopener noreferrer">色見本はこちら</a></p>
-        <select class="selectbox" name ="colorNum" is="ms-dropdown" required>
+        <p class="mt-3">協力業者名<span style="margin-right: 5em;"></span></p>
+        <select class="selectbox" name ="collaborator" is="ms-dropdown" required>
             <option hidden value="">選択してください</option>
-            <option value="'001" data-image="dist/images/icons/001.png">001　ホワイト</option>
-            <option value="'003" data-image="dist/images/icons/003.png">003　杢グレー</option>
-            <option value="'014" data-image="dist/images/icons/014.png">014　パープル</option>
-            <option value="'037" data-image="dist/images/icons/037.png">037　アーミーグリーン</option>
-            <option value="'005" data-image="dist/images/icons/005.png">005　ブラック</option>
-            <option value="'020" data-image="dist/images/icons/020.png">020　イエロー</option>
-            <option value="'165" data-image="dist/images/icons/165.png">165　デイジー</option>
-            <option value="'015" data-image="dist/images/icons/015.png">015　オレンジ</option>
-            <option value="'010" data-image="dist/images/icons/010.png">010　レッド</option>
-            <option value="'112" data-image="dist/images/icons/112.png">112　バーガンディ</option>
-            <option value="'132" data-image="dist/images/icons/132.png">132　ライトピンク</option>
-            <option value="'011" data-image="dist/images/icons/011.png">011　ピンク</option>
-            <option value="'034" data-image="dist/images/icons/034.png">034　ターコイズ</option>
-            <option value="'032" data-image="dist/images/icons/032.png">032　ロイヤルブルー</option>
-            <option value="'031" data-image="dist/images/icons/031.png">031　ネイビー</option>
+            <option value="kenso" data-image="dist/images/icons/kenso_logo.png">建装工業㈱</option>
+            <option value="sonota" data-image="">その他（備考に手入力）</option>
         </select>
-        <p class="link" id="to_stock">在庫の確認はリンク先の<a class="link" href="https://tomsj.com/product/00102-CVL/#" target="_blank">”在庫を確認”へ</a></p>
-        
-        <p class="mt-3">長袖・半袖</p>
-        <p id="selected_size">※長袖が選択されています※</p>
-        
-        <p class="mt-3">デザイン</p>
-        <select class="selectbox" name="design" is="ms-dropdown" required>
+                
+        <p class="mt-3">人数</p>
+        <select class="selectbox" name="number" is="ms-dropdown" required>
             <option hidden value="">選択してください</option>
-            <option value="logo" data-image="dist\images\icons\logo2.png">ロゴ</option>
-            <option value="21" data-image="dist\images\icons\shinkiba2.png">2021年版</option>
-            <option value="22" data-image="dist\images\icons\ichikawa2.png">2022年版</option>
+            <option value="1" >1</option>
+            <option value="2" >2</option>
+            <option value="3" >3</option>
+            <option value="4" >4</option>
+            <option value="5" >5</option>
+            <option value="6" >6</option>
+            <option value="7" >7</option>
+            <option value="8" >8</option>
+            <option value="9" >9</option>
+            <option value="10" >10</option>
+            <option value="10&more" >10名以上（備考に手入力）</option>
         </select>
 
-        <p class="mt-3">サイズ(長袖)<span style="margin-right: 40px;"></span><a class="link" href="https://prod-toms-web.s3.amazonaws.com/assets/product/00102/pdf/size_chart/00102-CVL-silhouette.pdf" target="_blank">サイズ見本はこちら</a></p>
-        <select class="selectbox" name="size" is="ms-dropdown" required>
-            <option hidden value="">選択してください</option>
-            <option value="110">110</option>
-            <option value="130">130</option>
-            <option value="150">150</option>
-            <option value="XS">XS</option>
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-            <option value="2XL">2XL</option>
-            <option value="3XL">3XL</option>                
-        </select>
+        <input type="text" name="remarks">
 
-        <input type="submit" class="submit_button" value="カゴに入れる">
+        <input type="submit" class="submit_button" value="入力">
     </form>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -72,7 +50,7 @@
     <script>
 
         $(document).ready(function () {
-            const liffId = "1657365828-3o8WY9rY";
+            const liffId = "1657461453-3RzP857r";
             initializeLiff(liffId);
         })
 
@@ -102,12 +80,11 @@
 
         $(function () {
             $('form').submit(function () {
-                const commandName = "オーダー"
-                const colorNum = $('[name="colorNum"]').val();
-                const long_short  = "long"
-                const design  = $('[name="design"]').val();
-                const size = $('[name="size"]').val();
-                const msg = `${commandName}\n${colorNum}\n${long_short}\n${design}\n${size}`;
+                const commandName = "Outsorcing"
+                const collaboName = $('[name="collaborator"]').val();
+                const number = $('[name="number"]').val();
+                const remarks = $('[name="remarks"]').val();
+                const msg = `${commandName}\n${collaboName}\n${number}\n${remarks}`;
                 sendText(msg);
                 return false;
             });
